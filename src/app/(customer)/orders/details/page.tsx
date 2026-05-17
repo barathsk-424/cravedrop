@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -45,8 +45,11 @@ const steps = [
   { id: "delivered", label: "Delivered", icon: MapPin, time: null },
 ];
 
-export default function OrderTrackingPage() {
-  const params = useParams();
+import { Suspense } from "react";
+
+function OrderTrackingContent() {
+  const searchParams = useSearchParams();
+  const orderId = searchParams.get("id") || "Unknown Order";
   const [currentStep, setCurrentStep] = useState(2); // 0: accepted, 1: preparing, 2: out_for_delivery, 3: delivered
 
   // Simulate real-time updates for demo purposes
@@ -65,7 +68,7 @@ export default function OrderTrackingPage() {
         </Link>
         <div>
           <h1 className="text-xl font-bold text-[var(--text-primary)]">Track Order</h1>
-          <p className="text-sm text-[var(--text-tertiary)] font-medium">{params.id}</p>
+          <p className="text-sm text-[var(--text-tertiary)] font-medium">{orderId}</p>
         </div>
       </div>
 
@@ -206,4 +209,12 @@ export default function OrderTrackingPage() {
       </div>
     </div>
   );
+}
+
+export default function OrderTrackingPage() {
+  return (
+    <Suspense fallback={<div className="container-app py-6 pb-24"><div className="animate-pulse flex space-x-4"><div className="flex-1 space-y-6 py-1"><div className="h-2 bg-slate-200 rounded"></div><div className="space-y-3"><div className="grid grid-cols-3 gap-4"><div className="h-2 bg-slate-200 rounded col-span-2"></div><div className="h-2 bg-slate-200 rounded col-span-1"></div></div><div className="h-2 bg-slate-200 rounded"></div></div></div></div></div>}>
+      <OrderTrackingContent />
+    </Suspense>
+  )
 }

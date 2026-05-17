@@ -132,7 +132,7 @@ export default function OrdersPage() {
                     )}
                     {(order.status === "pending" || order.status === "confirmed" || order.status === "preparing" || order.status === "out_for_delivery") && (
                       <Link 
-                        href={`/orders/${order.id}`}
+                        href={`/orders/details?id=${order.id}`}
                         className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider bg-[var(--primary)] text-white hover:bg-[var(--primary-dark)] transition-colors cursor-pointer"
                       >
                         Track

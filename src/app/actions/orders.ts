@@ -1,7 +1,4 @@
-'use server'
-
-import { createClient } from '@/lib/supabase-server'
-import { revalidatePath } from 'next/cache'
+import { supabase } from '@/lib/supabase'
 
 export async function createOrder(orderData: {
   address_id: string | null;
@@ -22,8 +19,6 @@ export async function createOrder(orderData: {
     special_instructions?: string;
   }[];
 }) {
-  const supabase = await createClient()
-  
   const { data: { user }, error: authError } = await supabase.auth.getUser()
   if (authError || !user) {
     throw new Error('Authentication required to place an order')
@@ -66,10 +61,8 @@ export async function createOrder(orderData: {
 
   if (itemsError) {
     console.error('Order items creation error:', itemsError)
-    // In a real app, you might want to rollback the order creation here
     throw new Error('Failed to create order items')
   }
 
-  revalidatePath('/orders')
   return order
 }

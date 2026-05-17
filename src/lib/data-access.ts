@@ -1,8 +1,14 @@
-import { createClient } from './supabase-server';
+import { createClient } from '@supabase/supabase-js';
+import { Database } from '@/types/supabase';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+const getSupabase = () => createClient<Database>(supabaseUrl, supabaseKey);
 import type { Category, Food, Banner } from '@/types';
 
 export async function getBanners() {
-  const supabase = await createClient();
+  const supabase = getSupabase();
   const { data, error } = await supabase
     .from('banners')
     .select('*')
@@ -18,7 +24,7 @@ export async function getBanners() {
 }
 
 export async function getCategories() {
-  const supabase = await createClient();
+  const supabase = getSupabase();
   const { data, error } = await supabase
     .from('categories')
     .select('*')
@@ -33,7 +39,7 @@ export async function getCategories() {
 }
 
 export async function getFeaturedFoods() {
-  const supabase = await createClient();
+  const supabase = getSupabase();
   const { data, error } = await supabase
     .from('foods')
     .select(`
@@ -52,7 +58,7 @@ export async function getFeaturedFoods() {
 }
 
 export async function getFoodByCategory(categoryId: string) {
-  const supabase = await createClient();
+  const supabase = getSupabase();
   const { data, error } = await supabase
     .from('foods')
     .select(`
