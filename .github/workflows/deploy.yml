@@ -36,6 +36,8 @@ jobs:
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
           GITHUB_ACTIONS: true
           GITHUB_REPOSITORY: ${{ github.repository }}
+      - name: Add .nojekyll
+        run: touch ./out/.nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
