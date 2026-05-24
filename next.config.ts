@@ -1,8 +1,9 @@
 import type { NextConfig } from "next";
 
-const isProd = process.env.NODE_ENV === 'production';
-const isGithubActions = process.env.GITHUB_ACTIONS || false;
-const basePath = (isProd || isGithubActions) ? '/cravedrop' : '';
+const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
+// GITHUB_REPOSITORY is automatically set by GitHub Actions (e.g. "username/repo-name")
+const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? '';
+const basePath = isGithubActions && repoName ? `/${repoName}` : '';
 
 const nextConfig: NextConfig = {
   output: 'export',
