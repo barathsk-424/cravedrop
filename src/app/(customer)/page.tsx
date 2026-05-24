@@ -93,9 +93,9 @@ function ServiceCard({ title, subtitle, offer, image, href }: { title: string, s
 
 /* ─── Instamart Slider (Static for now) ─── */
 const groceryCategories = [
-  { name: "Fresh Vegetables", image: "/images/3d/vegetables.png" },
+  { name: "Fresh Vegetables", image: "/cravedrop/images/3d/vegetables.png" },
   { name: "Fresh Fruits", image: "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600&auto=format&fit=crop" },
-  { name: "Dairy, Bread and Eggs", image: "/images/3d/dairy.png" },
+  { name: "Dairy, Bread and Eggs", image: "/cravedrop/images/3d/dairy.png" },
   { name: "Rice, Atta and Dals", image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&auto=format&fit=crop" },
   { name: "Masalas and Dry Fruits", image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&auto=format&fit=crop" },
   { name: "Oils and Ghee", image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&auto=format&fit=crop" },

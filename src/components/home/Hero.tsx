@@ -24,7 +24,7 @@ export function Hero() {
       {/* Cinematic Background */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src={banners && banners.length > 0 ? banners[0].image_url : "/images/hero-bg.png"}
+          src={banners && banners.length > 0 ? banners[0].image_url : "/cravedrop/images/hero-bg.png"}
           alt="Hero Background" 
           fill 
           className="object-cover scale-105 animate-slow-zoom"
